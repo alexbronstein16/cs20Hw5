@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>products3.html</title>
+</head>
+
+<body>
+    <h1>Products List</h1>
+
+    <select id="categorySelect"></select>
+
+    <button onclick="filterProducts()">Filter</button>
+
+
+    <div id="result"></div>
+
+
+    <script>
+        //save for products 
+        var allProducts = [];
+        //when page load
+        window.onload = function () {
+            //fetch data and load into array
+            fetch("products.json")
+                .then(response => response.json())
+                .then(data => {
+                    allProducts = data;
+
+                    //save categories 
+                    var categories = new Set(); //no duplicates 
+                    for (let i = 0; i < data.length; i++){
+                        for(let j = 0; j < data[i].categories.length; j++){
+                            //add category to set
+                            categories.add(data[i].categories[j]);
+                        }
+                    }
+                    //populate our dropdwon
+                    var select = document.getElementById("categorySelect");
+                    categories.forEach(function(category) {
+                        //create option object
+                        var option = document.createElement("option");
+
+                        //set values
+                        option.value = category
+                        option.text = category;
+
+                        //add to drop down
+                        select.appendChild(option)
+                    })
+                });
+        };
+
+        function filterProducts(){
+            //get our categroy
+            var category = document.getElementById("categorySelect").value;
+            var output = "";
+            //only print name if in categroy 
+            for(var i = 0; i < allProducts.length; i++){
+                if(allProducts[i].categories.includes(category)){
+                    output += "<p>" + allProducts[i].name + "</p>";
+                }
+            }
+            document.getElementById("result").innerHTML = output;
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

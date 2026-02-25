@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>products2.html</title>
+</head>
+
+<body>
+    <h1>Products List</h1>
+
+    <button onclick="loadProducts()">Load Products</button>
+
+    <div id="result"></div>
+
+
+    <script>
+        function loadProducts() {
+            
+            fetch("products.json") //get
+                .then(response => response.json()) //convert response into object
+                .then(data => {
+
+                    var output = "";
+
+                    //loop through products 
+                    for (var i = 0; i < data.length; i++){
+                        output += "<h3>" + data[i].name + "</h3>";
+                        output += "<p>" + data[i].description + "</p>";
+                        output += "<p>Price: $" + data[i].price + "</p>";
+                        output += "<p>Categories: " + data[i].categories.join(", ") + "</p>";
+                        output += "<hr>"; //visually seperate
+                    }
+                    document.getElementById("result").innerHTML = output;
+
+                });
+        }
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>products1.html</title>
+</head>
+
+<body>
+    <h1>Products JSON</h1>
+
+    <script>
+
+        var products = [
+            {
+                name: "Air Forces",
+                description: "White Air Force 1s",
+                price: 99.99,
+                categories: ["Shoes", "Nike"]
+            },
+            {
+                name: "Dunks",
+                description: "Brown Dunks",
+                price: 119.99,
+                categories: ["Shoes", "Nike"]
+            },
+            {
+                name: "Clogs",
+                description: "Birkenstock Beige Clogs",
+                price: 150.00,
+                categories: ["Shoes", "Birkenstock"]
+            },
+            {
+                name: "Chelsea Jersey",
+                description: "2025/26 Chelsea Home Jersey",
+                price: 99.99,
+                categories: ["Athletic", "Shirt", "Nike"]
+            },
+            {
+                name: "Adidas Predator",
+                description: "Adidas soccer cleats",
+                price: 150.00,
+                categories: ["Athletic", "Cleats", "Adidas"]
+            },
+            {
+                name: "Adidas Copa",
+                description: "Black leather soccer cleats",
+                price: 120.00,
+                categories: ["Athletic", "Cleats", "Adidas"]
+            },
+            {
+                name: "Real Madrid Jersey",
+                description: "2025/26 Real Madrid Home Jersey",
+                price: 99.99,
+                categories: ["Athletic", "Shirt", "Adidas"]
+            },
+            {
+                name: "Samba",
+                description: "Adidas Soccer Inspired Shoe",
+                price: 89.99,
+                categories: ["Shoes", "Adidas"]
+            },
+            {
+                name: "Quarter Zip",
+                description: "Ralph Lauren Quarter Zip",
+                price: 150.00,
+                categories: ["Ralph Lauren", "Quarter Zip"]
+            },
+            {
+                name: "Robe",
+                description: "Ralph Lauren Robe",
+                price: 110.00,
+                categories: ["Ralph Lauren", "Robe"]
+            }
+        ];
+        //convert into json string
+        var jsonString = JSON.stringify(products);
+
+        document.write("<p>" + jsonString + "</p>")
+
+
+    </script>
+
+
+</body>
+
+</html>
