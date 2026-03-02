@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Soccer Team Search</title>
+</head>
+
+<body>
+
+    <h1>Soccer Team Search</h1>
+    <!-- button for search  -->
+    <input type="text" id="teamInput" placeholder="Enter team name">
+    <button onclick="searchTeam()">Search</button>
+    <div id="results" style="white-space: pre-line;"></div>
+
+    <script>
+        function searchTeam() {
+            const query = document.getElementById("teamInput").value;
+
+            fetch("https://www.thesportsdb.com/api/v1/json/123/searchteams.php?t=" + query)
+                .then(response => response.json())
+                .then(data => {
+                    const resultsDiv = document.getElementById("results");
+                    resultsDiv.textContent = "";
+                    //checking if there is data or if team doesn't exist
+                    if (!data.teams) {
+                        resultsDiv.textContent = "No results found.";
+                        return;
+                    }
+                    //print information 
+                    const team = data.teams[0]; //using const bc if we do a second search its new scope
+                    resultsDiv.textContent = "\n" +
+                        "Team: " + team.strTeam + "\n" +
+                        "League: " + team.strLeague + "\n" +
+                        "Stadium: " + team.strStadium + "\n";
+                })
+        }
+
+    </script>
+
+    <h2>Additonal Content:</h2>
+    <p>This uses the TheSportsDB API to retreive soccer team information. I chose this API because it was free and I
+        like soccer. I found this API at <a
+            href="https://www.thesportsdb.com/documentation?">https://www.thesportsdb.com/documentation? </a></p>
+
+    <p> I used the searchteams.php endpoint with the paramater t (team name) which takes the result of whatever is put in the search bar. This API would be helpful for looking up basic information about soccer teams. For example, it could be used by a mobile app that displays match information to determine what stadium and competition a given team is playing in. 
+    </p>
+
+
+
+
+</body>
+
+</html>
